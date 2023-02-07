@@ -10,6 +10,17 @@ const Calculator = () => {
         console.log(exp)
     }
 
+    const handleAllClear = (displayNumber) => {
+        setDisplayNumber([])
+    }
+
+    const handleDelete = (displayNumber) => {
+        let numbers = displayNumber;
+        const deletedNumber = numbers.pop();
+
+        setDisplayNumber(arr => [...numbers])
+    }
+
     return (
         <div className='calculator-container'>
             <div className='display'>
@@ -28,11 +39,11 @@ const Calculator = () => {
                 <button onClick={() => setDisplayNumber(arr => [...arr, 2])}>2</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 3])}>3</button>
                 <button >-</button>
-                <button>DEL</button>
+                <button onClick={() => handleDelete(displayNumber)}>DEL</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 0])}>0</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, ','])}>,</button>
                 <button >+</button>
-                <button>AC</button>
+                <button onClick={() => handleAllClear(displayNumber)}>AC</button>
                 <button onClick={() => handleExpression(displayNumber
                 )}>=</button>
 
