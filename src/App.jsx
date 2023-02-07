@@ -3,8 +3,6 @@ import './App.css'
 import Calculator from './component/Calculator'
 
 
-
-
 function App() {
 
 
