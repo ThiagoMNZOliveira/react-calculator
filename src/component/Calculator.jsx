@@ -9,10 +9,39 @@ const Calculator = () => {
     const [operation, setOperation] = useState('');
     /* console.log(displayNumber) */
 
-    const handleExpression = (firstNumber, secondNumber, operation, displayNumber) => {
-        
-        
-        console.log(firstNumber, operation, displayNumber)
+    const handleExpression = (firstNumber, operation, displayNumber) => {
+
+
+        if(displayNumber.length === 0) return
+
+
+
+        let result;
+
+        const secondNumber = Number(displayNumber.join(''))
+
+        if (operation === '+') {
+            result = Number(firstNumber) + secondNumber;
+            setFirstNumber(result);
+        } else if (operation === '-') {
+            result = Number(firstNumber) - secondNumber;
+            setFirstNumber(result);
+
+        } else if (operation === 'X') {
+            result = Number(firstNumber) * secondNumber;
+            setFirstNumber(result);
+
+        } else {
+            result = Number(firstNumber) / secondNumber
+            setFirstNumber(result);
+
+        }
+
+
+
+
+        setDisplayNumber(arr => [result])
+        console.log(firstNumber, operation, secondNumber, result)
     }
 
     const handleAllClear = () => {
@@ -31,7 +60,6 @@ const Calculator = () => {
 
         setOperation(e.target.value);
         setDisplayNumber([])
-        
 
 
         if (firstNumber !== '') {
@@ -39,12 +67,6 @@ const Calculator = () => {
         } else {
             setFirstNumber(displayNumber.join(''))
         }
-
-
-
-
-
-        /* console.log(e.target.value, firstNumber) */
     }
 
 
@@ -81,14 +103,14 @@ const Calculator = () => {
                 </button>
                 <button onClick={() => handleDelete(displayNumber)}>DEL</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 0])}>0</button>
-                <button onClick={() => setDisplayNumber(arr => [...arr, ','])}>,</button>
+                <button onClick={() => setDisplayNumber(arr => [...arr, '.'])}>.</button>
                 <button
                     onClick={(e) => handleOperation(displayNumber, e, 'value')}
                     value='+'>
                     +
                 </button>
                 <button onClick={() => handleAllClear()}>AC</button>
-                <button onClick={() => handleExpression(firstNumber, secondNumber, operation, displayNumber)}>=</button>
+                <button onClick={() => handleExpression(firstNumber, operation, displayNumber)}>=</button>
 
             </div>
         </div>
