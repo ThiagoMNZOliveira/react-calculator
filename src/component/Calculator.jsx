@@ -12,7 +12,7 @@ const Calculator = () => {
     const handleExpression = (firstNumber, operation, displayNumber) => {
 
 
-        if(displayNumber.length === 0) return
+        if (displayNumber.length === 0) return
 
 
 
@@ -22,25 +22,28 @@ const Calculator = () => {
 
         if (operation === '+') {
             result = Number(firstNumber) + secondNumber;
-            setFirstNumber(result);
         } else if (operation === '-') {
             result = Number(firstNumber) - secondNumber;
-            setFirstNumber(result);
 
         } else if (operation === 'X') {
             result = Number(firstNumber) * secondNumber;
-            setFirstNumber(result);
 
         } else {
             result = Number(firstNumber) / secondNumber
-            setFirstNumber(result);
 
         }
 
+        // check if number is float
+        if(result % 1 === 0) {
+            setFirstNumber(result);
 
+            setDisplayNumber(arr => [result])
+        } else {
+            setFirstNumber(result.toFixed(2));
 
-
-        setDisplayNumber(arr => [result])
+        setDisplayNumber(arr => [result.toFixed(2)])
+        }
+        
         console.log(firstNumber, operation, secondNumber, result)
     }
 
