@@ -4,17 +4,21 @@ import { useState } from 'react'
 
 const Calculator = () => {
     const [displayNumber, setDisplayNumber] = useState([])
-    const [firstNumber, setFirstNumber] = useState();
-    const [secondNumber, setSecondNumber] = useState();
-    const [operation, setOperation] = useState();
+    const [firstNumber, setFirstNumber] = useState('');
+    const [secondNumber, setSecondNumber] = useState('');
+    const [operation, setOperation] = useState('');
     /* console.log(displayNumber) */
 
-    const handleExpression = (firstNumber, secondNumber, operation) => {
-        console.log(firstNumber, secondNumber, operation)
+    const handleExpression = (firstNumber, secondNumber, operation, displayNumber) => {
+        
+        
+        console.log(firstNumber, operation, displayNumber)
     }
 
     const handleAllClear = () => {
         setDisplayNumber([])
+        setFirstNumber('')
+        setSecondNumber('')
     }
 
     const handleDelete = (displayNumber) => {
@@ -26,7 +30,16 @@ const Calculator = () => {
     const handleOperation = (displayNumber, e) => {
 
         setOperation(e.target.value);
-        setFirstNumber(displayNumber.join(''))
+        setDisplayNumber([])
+        
+
+
+        if (firstNumber !== '') {
+            setSecondNumber(displayNumber.join(''))
+        } else {
+            setFirstNumber(displayNumber.join(''))
+        }
+
 
 
 
@@ -34,7 +47,7 @@ const Calculator = () => {
         /* console.log(e.target.value, firstNumber) */
     }
 
-    
+
 
     return (
         <div className='calculator-container'>
@@ -75,7 +88,7 @@ const Calculator = () => {
                     +
                 </button>
                 <button onClick={() => handleAllClear()}>AC</button>
-                <button onClick={() => handleExpression(displayNumber, operation)}>=</button>
+                <button onClick={() => handleExpression(firstNumber, secondNumber, operation, displayNumber)}>=</button>
 
             </div>
         </div>
