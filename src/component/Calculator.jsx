@@ -34,16 +34,16 @@ const Calculator = () => {
         }
 
         // check if number is float
-        if(result % 1 === 0) {
+        if (result % 1 === 0) {
             setFirstNumber(result);
 
             setDisplayNumber(arr => [result])
         } else {
             setFirstNumber(result.toFixed(2));
 
-        setDisplayNumber(arr => [result.toFixed(2)])
+            setDisplayNumber(arr => [result.toFixed(2)])
         }
-        
+
         console.log(firstNumber, operation, secondNumber, result)
     }
 

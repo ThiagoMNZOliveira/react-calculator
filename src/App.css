@@ -10,6 +10,13 @@
 
 .App h1 {
   margin-bottom: 50px;
+  color: #86c1e9;
   font-weight: bold;
-  font-size: 50px;
+  font-size: 60px;
+  transition: .4s;
+  text-shadow: 2px 2px 5px #020202;
+}
+
+.App h1:hover {
+  color: #c9ddeb;
 }
