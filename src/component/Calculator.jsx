@@ -1,6 +1,6 @@
 import './Calculator.css'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const Calculator = () => {
     const [displayNumber, setDisplayNumber] = useState([])
@@ -59,10 +59,13 @@ const Calculator = () => {
         setDisplayNumber(arr => [...numbers])
     }
 
-    const handleOperation = (displayNumber, e) => {
+    /* const handleOperation = (displayNumber, e) => {
 
         setOperation(e.target.value);
         setDisplayNumber([])
+        if (firstNumber !== '') handleExpression(firstNumber, operation, displayNumber)
+
+
 
 
         if (firstNumber !== '') {
@@ -70,46 +73,60 @@ const Calculator = () => {
         } else {
             setFirstNumber(displayNumber.join(''))
         }
-    }
+    } */
+
+    useEffect(() => {
+
+
+        if(displayNumber.length === 0) return
+
+        setDisplayNumber([])
+
+        if (firstNumber !== '') {
+            setSecondNumber(displayNumber.join(''))
+        } else {
+            setFirstNumber(displayNumber.join(''))
+        }
+    }, [operation])
 
 
 
     return (
         <div className='calculator-container'>
             <div className='display'>
-                <p>{firstNumber !== '' ? `${firstNumber}${operation}` : ''}</p>
+                <p>{firstNumber !== '' ? `${firstNumber}${operation == '/' ? '÷' : operation}` : ''}</p>
                 <p>{displayNumber.length > 0 ? displayNumber : '0'}</p>
             </div>
             <div className='buttons'>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 8])}>8</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 7])}>7</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 9])}>9</button>
-                <button
-                    onClick={(e) => handleOperation(displayNumber, e, 'value')}
+                <button onClick={(e) => setOperation(e.target.value)}
+                    /* onClick={(e) => handleOperation(displayNumber, e, 'value')} */
                     value='X'>
                     X
                 </button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 4])}>4</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 5])}>5</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 6])}>6</button>
-                <button
-                    onClick={(e) => handleOperation(displayNumber, e, 'value')}
+                <button onClick={(e) => setOperation(e.target.value)}
+                    /* onClick={(e) => handleOperation(displayNumber, e, 'value')} */
                     value='/'>
                     ÷
                 </button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 1])}>1</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 2])}>2</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 3])}>3</button>
-                <button
-                    onClick={(e) => handleOperation(displayNumber, e, 'value')}
+                <button onClick={(e) => setOperation(e.target.value)}
+                    /* onClick={(e) => handleOperation(displayNumber, e, 'value')} */
                     value='-'>
                     -
                 </button>
                 <button onClick={() => handleDelete(displayNumber)}>DEL</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 0])}>0</button>
                 <button onClick={() => setDisplayNumber(arr => [...arr, '.'])}>.</button>
-                <button
-                    onClick={(e) => handleOperation(displayNumber, e, 'value')}
+                <button onClick={(e) => setOperation(e.target.value)}
+                    /* onClick={(e) => handleOperation(displayNumber, e, 'value')} */
                     value='+'>
                     +
                 </button>
