@@ -77,7 +77,8 @@ const Calculator = () => {
     return (
         <div className='calculator-container'>
             <div className='display'>
-                <p>{displayNumber}</p>
+                <p>{firstNumber !== '' ? `${firstNumber}${operation}` : ''}</p>
+                <p>{displayNumber.length > 0 ? displayNumber : '0'}</p>
             </div>
             <div className='buttons'>
                 <button onClick={() => setDisplayNumber(arr => [...arr, 8])}>8</button>

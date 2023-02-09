@@ -27,6 +27,12 @@
     font-size: 60px;
 }
 
+.display :first-child {
+    position: relative;
+    bottom: 60px;
+    left: 30px
+}
+
 .buttons {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
