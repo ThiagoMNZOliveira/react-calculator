@@ -10,8 +10,11 @@ const Calculator = () => {
 
 
         if (displayNumber.length === 0) return
+        
+        const result = String(eval(displayNumber))
 
-
+        
+        setDisplayNumber(result)
 
     }
 
