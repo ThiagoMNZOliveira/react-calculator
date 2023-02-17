@@ -23,7 +23,16 @@ const Calculator = () => {
     const handleDelete = (displayNumber) => {
         let numbers = displayNumber.split('');
         const deletedNumber = numbers.pop();
-        setDisplayNumber(value => value = numbers.join(''))
+        setDisplayNumber(numbers.join(''))
+    }
+
+    const verifyDuplicatedOperators = (op) => {
+
+        if (operations.includes(op) && operations.includes(displayNumber.slice(-1))) {
+            return;
+        } else {
+            setDisplayNumber(value => value + op)
+        }
     }
 
 
@@ -40,28 +49,28 @@ const Calculator = () => {
                 <button onClick={() => setDisplayNumber(value => value + 8)}>8</button>
                 <button onClick={() => setDisplayNumber(value => value + 7)}>7</button>
                 <button onClick={() => setDisplayNumber(value => value + 9)}>9</button>
-                <button onClick={() => setDisplayNumber(value => value + '*')}
-                    value='x'>
-                    x
+                <button onClick={() => verifyDuplicatedOperators('*')}
+                    value='*'>
+                    *
                 </button>
                 <button onClick={() => setDisplayNumber(value => value + 4)}>4</button>
                 <button onClick={() => setDisplayNumber(value => value + 5)}>5</button>
                 <button onClick={() => setDisplayNumber(value => value + 6)}>6</button>
-                <button onClick={() => setDisplayNumber(value => value + '/')}
+                <button onClick={() => verifyDuplicatedOperators('/')}
                     value='/'>
                     ÷
                 </button>
                 <button onClick={() => setDisplayNumber(value => value + 1)}>1</button>
                 <button onClick={() => setDisplayNumber(value => value + 2)}>2</button>
                 <button onClick={() => setDisplayNumber(value => value + 3)}>3</button>
-                <button onClick={() => setDisplayNumber(value => value + '-')}
+                <button onClick={() => verifyDuplicatedOperators('-')}
                     value='-'>
                     -
                 </button>
                 <button onClick={() => handleDelete(displayNumber)}>DEL</button>
                 <button onClick={() => setDisplayNumber(value => value + 0)}>0</button>
-                <button onClick={() => setDisplayNumber(value => value + '.')}>.</button>
-                <button onClick={() => setDisplayNumber(value => value + '+')}
+                <button onClick={() => verifyDuplicatedOperators('.')}>.</button>
+                <button onClick={() => verifyDuplicatedOperators('+')}
                     value='+'>
                     +
                 </button>
